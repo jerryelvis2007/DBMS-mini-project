@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eLibrary - Library Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- LOGIN PAGE -->
+    <main id="loginPage" class="login-page">
+        <section class="login-brand">
+            <div class="brand-logo">
+                <span class="book-logo">◧</span>
+                <span>eLibrary</span>
+            </div>
+
+            <p class="brand-subtitle">Library Management System</p>
+
+            <div class="book-illustration">
+                <div class="lamp">✦</div>
+                <div class="plant">♧</div>
+                <div class="books-stack">
+                    <div class="book book-purple"></div>
+                    <div class="book book-blue"></div>
+                    <div class="book book-violet"></div>
+                    <div class="book book-white"></div>
+                    <div class="book book-dark"></div>
+                </div>
+                <div class="book-shadow"></div>
+            </div>
+
+            <p class="brand-motto">Read · Learn · Grow</p>
+        </section>
+
+        <section class="login-form-panel">
+            <form id="loginForm" class="login-form">
+                <h1>Login</h1>
+                <p class="muted">
+                    Enter your credentials to access the system.
+                </p>
+
+                <label class="field">
+                    <span>♙</span>
+                    <input
+                        id="username"
+                        type="text"
+                        placeholder="Username"
+                        autocomplete="username"
+                        required
+                    >
+                </label>
+
+                <label class="field">
+                    <span>♙</span>
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        required
+                    >
+                </label>
+
+                <button type="submit" class="btn btn-primary full-width">
+                    Login
+                </button>
+
+                <div class="or-divider">
+                    <span></span> OR <span></span>
+                </div>
+
+                <button type="button" id="contactLibrarian" class="text-button">
+                    Contact Librarian
+                </button>
+
+                <p class="login-hint">
+                    Authentication must be enabled in the backend
+                    before deployment.
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <!-- APPLICATION -->
+    <div id="appShell" class="app-shell">
+
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-brand">
+                <span class="book-logo">◧</span>
+                <span>eLibrary</span>
+            </div>
+
+            <nav class="side-nav">
+                <button class="nav-link active" data-page="dashboard">
+                    <span>⌂</span> Home
+                </button>
+
+                <button class="nav-link" data-page="members">
+                    <span>♟</span> Members
+                </button>
+
+                <button class="nav-link" data-page="books">
+                    <span>◧</span> Books
+                </button>
+            </nav>
+
+            <button id="logoutBtn" class="nav-link logout-link">
+                <span>⇥</span> Logout
+            </button>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="main-area">
+            <header class="topbar">
+                <button id="mobileMenuBtn" class="mobile-menu-btn">
+                    ☰
+                </button>
+
+                <div class="topbar-spacer"></div>
+
+                <div class="welcome-user">
+                    ♟ Welcome, <strong id="welcomeName">Librarian</strong>
+                </div>
+            </header>
+
+            <main class="content">
+                <div id="notice" class="notice hidden" role="status"></div>
+
+                <!-- DASHBOARD -->
+                <section id="dashboardPage" class="page">
+                    <div class="page-heading">
+                        <h1>Hello, Librarian!</h1>
+                        <p>Here's a quick overview of the library.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <article class="stat-card stat-purple">
+                            <div class="stat-icon">♟</div>
+                            <strong id="totalMembers">—</strong>
+                            <span>Total Members</span>
+                        </article>
+
+                        <article class="stat-card stat-blue">
+                            <div class="stat-icon">◧</div>
+                            <strong id="totalBooks">—</strong>
+                            <span>Total Books</span>
+                        </article>
+
+                        <article class="stat-card stat-green">
+                            <div class="stat-icon">▣</div>
+                            <strong id="borrowedBooks">—</strong>
+                            <span>Currently Borrowed</span>
+                        </article>
+
+                        <article class="stat-card stat-orange">
+                            <div class="stat-icon">▦</div>
+                            <strong id="dueSoon">—</strong>
+                            <span>Due Soon</span>
+                        </article>
+                    </div>
+
+                    <div class="panel dashboard-panel">
+                        <h2>Quick Actions</h2>
+                        <p class="muted">Manage your library records.</p>
+
+                        <div class="quick-actions">
+                            <button class="quick-action" data-page="members">
+                                <span>♟</span>
+                                <b>Find a Member</b>
+                                <small>Search member records</small>
+                            </button>
+
+                            <button class="quick-action" data-page="books">
+                                <span>◧</span>
+                                <b>Browse Books</b>
+                                <small>Check book availability</small>
+                            </button>
+
+                            <button class="quick-action" data-page="issue">
+                                <span>⇢</span>
+                                <b>Issue a Book</b>
+                                <small>Create a borrowing record</small>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MEMBERS -->
+                <section id="membersPage" class="page hidden">
+                    <div class="page-heading">
+                        <h1>Member Search</h1>
+                        <p>Search members and view their library activity.</p>
+                    </div>
+
+                    <form id="memberSearchForm" class="search-row">
+                        <label class="field search-field">
+                            <span>♙</span>
+                            <input
+                                id="memberSearchInput"
+                                type="search"
+                                placeholder="Enter member name or ID..."
+                            >
+                        </label>
+                        <button class="btn btn-primary" type="submit">
+                            Search
+                        </button>
+                    </form>
+
+                    <div id="memberResults" class="member-results"></div>
+
+                    <div id="memberDetails" class="panel hidden">
+                        <div class="panel-heading">
+                            <h2>Books Borrowed</h2>
+                            <span id="memberBorrowingCount" class="small-pill">
+                                0 records
+                            </span>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Book Title</th>
+                                        <th>Author</th>
+                                        <th>Issue Date</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="memberBorrowingsBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BOOKS -->
+                <section id="booksPage" class="page hidden">
+                    <div class="page-heading">
+                        <h1>Books</h1>
+                        <p>Browse the collection and check available copies.</p>
+                    </div>
+
+                    <form id="bookSearchForm" class="search-row">
+                        <label class="field search-field">
+                            <span>⌕</span>
+                            <input
+                                id="bookSearchInput"
+                                type="search"
+                                placeholder="Search by title or author..."
+                            >
+                        </label>
+                        <button class="btn btn-primary" type="submit">
+                            Search
+                        </button>
+                    </form>
+
+                    <div class="panel table-panel">
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Book ID</th>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Category</th>
+                                        <th>Available Copies</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="booksTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ISSUE BOOK -->
+                <section id="issuePage" class="page hidden">
+                    <div class="page-heading">
+                        <h1>Issue Book</h1>
+                        <p>Assign an available book to an active member.</p>
+                    </div>
+
+                    <form id="issueBookForm" class="panel issue-form">
+                        <div class="form-grid">
+                            <label class="form-field">
+                                <span>Member</span>
+                                <select id="issueMember" required>
+                                    <option value="">Select a member</option>
+                                </select>
+                            </label>
+
+                            <label class="form-field">
+                                <span>Issue Date</span>
+                                <input id="issueDate" type="date" required>
+                            </label>
+
+                            <label class="form-field">
+                                <span>Book</span>
+                                <select id="issueBook" required>
+                                    <option value="">Select a book</option>
+                                </select>
+                            </label>
+
+                            <label class="form-field">
+                                <span>Due Date</span>
+                                <input id="dueDate" type="date" required>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn btn-primary" type="submit">
+                                ▣ &nbsp; Issue Book
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+            </main>
+        </section>
+    </div>
+
+    <!-- Load API before application JavaScript -->
+    <script src="js/api.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
